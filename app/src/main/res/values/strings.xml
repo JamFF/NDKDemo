@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">EncryptNDK</string>
+    <string name="encrypt">加密</string>
+    <string name="encrypting">加密中</string>
+    <string name="decrypt">解密</string>
+    <string name="decrypting">解密中</string>
+    <string name="decrypt_ok">解密完成</string>
+</resources>
