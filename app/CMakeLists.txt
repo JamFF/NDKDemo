@@ -8,6 +8,9 @@ cmake_minimum_required(VERSION 3.4.1)
 # 设置生成的so动态库最后输出的路径
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/../jniLibs/${ANDROID_ABI})
 
+# 设置list变量，将多个源文件打包
+file(GLOB fileTools src/main/jni/*.c src/main/cpp/*.cpp)
+
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
@@ -20,25 +23,7 @@ add_library( # Sets the name of the library.
              SHARED
 
              # Provides a relative path to your source file(s).
-             src/main/cpp/native-lib.cpp )
-
-add_library( # Sets the name of the library.
-             encrypt-lib
-
-             # Sets the library as a shared library.
-             SHARED
-
-             # Provides a relative path to your source file(s).
-             src/main/jni/encrypt-lib.c )
-
-add_library( # Sets the name of the library.
-             file-lib
-
-             # Sets the library as a shared library.
-             SHARED
-
-             # Provides a relative path to your source file(s).
-             src/main/jni/file-lib.c )
+             ${fileTools} )
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -59,20 +44,6 @@ find_library( # Sets the name of the path variable.
 
 target_link_libraries( # Specifies the target library.
                        native-lib
-
-                       # Links the target library to the log library
-                       # included in the NDK.
-                       ${log-lib} )
-
-target_link_libraries( # Specifies the target library.
-                       encrypt-lib
-
-                       # Links the target library to the log library
-                       # included in the NDK.
-                       ${log-lib} )
-
-target_link_libraries( # Specifies the target library.
-                       file-lib
 
                        # Links the target library to the log library
                        # included in the NDK.

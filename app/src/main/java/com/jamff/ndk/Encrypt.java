@@ -12,8 +12,4 @@ public class Encrypt {
 
     // 文件解密
     public native int decrypt(String crypt_path, String decrypt_path);
-
-    static {
-        System.loadLibrary("encrypt-lib");
-    }
 }
